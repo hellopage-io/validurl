@@ -1,6 +1,6 @@
 {
-  "name": "validurl",
-  "version": "1.0.0",
+  "name": "be-url",
+  "version": "1.0.2",
   "description": "validate url",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

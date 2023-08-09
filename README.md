@@ -5,10 +5,18 @@ Check whether a string is a URL.
 ## Installation
 
 ```sh
-npm install validurl
+npm install be-url
 ```
 
 ## API
+
+### Usage
+
+```
+import isUrl from 'be-url'
+
+const valid = isUrl('https://www.example.com/test.html')
+```
 
 ### `isUrl(string, opt)`
 
