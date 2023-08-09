@@ -13,6 +13,18 @@ describe('valid url test', () => {
     expect(valid).toEqual(true)
   })
 
+  it('//www.hellopage.io/test.png is valid url', () => {
+    const url = '//www.hellopage.io/test.png'
+    const valid = isUrl(url)
+    expect(valid).toEqual(true)
+  })
+
+  it('www.hellopage.io/test.png is not valid url', () => {
+    const url = 'www.hellopage.io/test.png'
+    const valid = isUrl(url)
+    expect(valid).toEqual(false)
+  })
+
   it('https://undefined/test.png is not valid url', () => {
     const url = 'https://undefined/test.png'
     const valid = isUrl(url)
