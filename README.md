@@ -1,4 +1,4 @@
-# validurl
+# be-url
 
 Check whether a string is a URL.
 

@@ -5,6 +5,26 @@ type optionType = {
   }
 }
 
+function excludeOption(str: string, option: string | string[] | undefined): boolean {
+  if (!option) {
+    return true
+  }
+
+  if (typeof option === 'string') {
+    if (str.includes(option)) {
+      return false
+    }
+  } else {
+    option.forEach((item) => {
+      if (str.includes(item)) {
+        return false
+      }
+    })
+  }
+
+  return true
+}
+
 export default function isUrl(url: string, opt?: optionType) {
   const protocolAndDomainRE = /^(?:\w+:)?\/\/(\S+)$/
 
@@ -31,34 +51,10 @@ export default function isUrl(url: string, opt?: optionType) {
   }
 
   const domain = matchDomain[1]
-  if (opt?.exclude?.domain) {
-    if (typeof opt.exclude.domain === 'string') {
-      if (domain.includes(opt.exclude.domain)) {
-        return false
-      }
-    } else {
-      opt.exclude.domain.forEach((item) => {
-        if (domain.includes(item)) {
-          return false
-        }
-      })
-    }
+  if (!excludeOption(domain, opt?.exclude?.domain)) {
+    return false
   }
 
   const path = matchDomain[3]
-  if (path && opt?.exclude?.path) {
-    if (typeof opt.exclude.path === 'string') {
-      if (path.includes(opt.exclude.path)) {
-        return false
-      }
-    } else {
-      opt.exclude.path.forEach((item) => {
-        if (path.includes(item)) {
-          return false
-        }
-      })
-    }
-  }
-
-  return true
+  return excludeOption(path, opt?.exclude?.path)
 }
